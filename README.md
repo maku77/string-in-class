@@ -2,6 +2,7 @@
 Extracts all string literals from Java classes in JAR
 
 JAR ファイル内のクラスファイルから、文字列リテラルだけをすべて抽出するツールです。
+内部で `javap` コマンドを使用しているため、Python と JDK がインストールされている必要があります。
 
 ## 使い方
 
