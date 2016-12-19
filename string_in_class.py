@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """
-Extracts all string literals in Java classes in JAR.
+Extracts all string literals in Java classes.
 This needs Python (>= 3.5) and JDK (for javap) to be installed.
 
-Usage: python string_in_jar.py <jar_file>
+Usage: python string_in_class.py <jar_file | class_file>
 """
 
 import zipfile
@@ -43,8 +43,13 @@ def print_literal(line):
 
 if __name__ == '__main__':
     inputfile = sys.argv[1]
-    for clazz in iter_classes_in_jar(inputfile):
-        cmd = 'javap -cp {} -c {}'.format(inputfile, clazz)
+    if inputfile.endswith('.class'):
+        cmd = 'javap -c {}'.format(inputfile)
         for line in command(cmd):
             print_literal(line)
+    else:  # Probably it is JAR
+        for clazz in iter_classes_in_jar(inputfile):
+            cmd = 'javap -cp {} -c {}'.format(inputfile, clazz)
+            for line in command(cmd):
+                print_literal(line)
 
