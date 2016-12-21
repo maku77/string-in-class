@@ -13,5 +13,5 @@ $ python string_in_class.py <JARファイル or CLASSファイル>
 ## 仕組み
 
 1. JAR ファイル内のクラスファイルに対して、ひとつずつ `javap -c` コマンドをかける
-2. その出力から `// String xxxx` というテキストを見つけて、`xxxx` の部分だけを出力する
+2. その出力から `#12 = String   #34  // xxxx` といったテキストを見つけて、`xxxx` の部分だけを出力する
 
